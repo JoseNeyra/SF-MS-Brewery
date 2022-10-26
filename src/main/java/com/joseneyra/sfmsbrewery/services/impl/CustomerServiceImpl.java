@@ -18,7 +18,9 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerDataTransferObject saveNewCustomer(CustomerDataTransferObject customerDto) {
-        return null;
+        return CustomerDataTransferObject.builder()
+                .id(UUID.randomUUID())
+                .build();
     }
 
     @Override
