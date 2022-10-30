@@ -2,14 +2,14 @@ package com.joseneyra.sfmsbrewery.web.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import javax.validation.ConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
+@ControllerAdvice
 public class ControllerExceptionHandler {
 
     @ExceptionHandler(ConstraintViolationException.class)
