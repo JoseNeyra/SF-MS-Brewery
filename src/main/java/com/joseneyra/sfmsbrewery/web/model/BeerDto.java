@@ -14,7 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder                        // Allows to build the object using the builder pattern
-public class BeerDataTransferObject {
+public class BeerDto {
 
     @Null
     private UUID id;

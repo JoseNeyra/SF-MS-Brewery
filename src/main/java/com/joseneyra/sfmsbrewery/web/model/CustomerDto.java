@@ -12,7 +12,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CustomerDataTransferObject {
+public class CustomerDto {
 
     @Null
     private UUID id;

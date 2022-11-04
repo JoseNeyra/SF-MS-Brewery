@@ -1,6 +1,6 @@
 package com.joseneyra.sfmsbrewery.web.controller;
 
-import com.joseneyra.sfmsbrewery.web.model.BeerDataTransferObject;
+import com.joseneyra.sfmsbrewery.web.model.BeerDto;
 import com.joseneyra.sfmsbrewery.services.BeerService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -22,13 +22,13 @@ public class BeerController {
     }
 
     @GetMapping("/{beerId}")                                                                                // beerId is a path variable
-    public ResponseEntity<BeerDataTransferObject> getBeer(@PathVariable("beerId") UUID beerId) {            // @PathVariable maps the incoming "beerId" in path to the variable. Not needed if the two have the same name
+    public ResponseEntity<BeerDto> getBeer(@PathVariable("beerId") UUID beerId) {            // @PathVariable maps the incoming "beerId" in path to the variable. Not needed if the two have the same name
         return new ResponseEntity<>(beerService.getBeerById(beerId), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<BeerDataTransferObject> handlePost (@Valid @RequestBody BeerDataTransferObject beerDto) {
-        BeerDataTransferObject savedDto = beerService.saveNewBeer(beerDto);
+    public ResponseEntity<BeerDto> handlePost (@Valid @RequestBody BeerDto beerDto) {
+        BeerDto savedDto = beerService.saveNewBeer(beerDto);
 
         HttpHeaders headers = new HttpHeaders();
         // TODO: add hostname to url
@@ -38,8 +38,8 @@ public class BeerController {
     }
 
     @PutMapping("/{beerId}")
-    public ResponseEntity<BeerDataTransferObject> handleUpdate(@PathVariable("beerId") UUID beerId,
-                                                               @Valid @RequestBody BeerDataTransferObject beerDto) {
+    public ResponseEntity<BeerDto> handleUpdate(@PathVariable("beerId") UUID beerId,
+                                                @Valid @RequestBody BeerDto beerDto) {
         beerService.updateBeer(beerId, beerDto);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

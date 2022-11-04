@@ -1,16 +1,13 @@
 package com.joseneyra.sfmsbrewery.web.controller;
 
 import com.joseneyra.sfmsbrewery.services.CustomerService;
-import com.joseneyra.sfmsbrewery.web.model.CustomerDataTransferObject;
+import com.joseneyra.sfmsbrewery.web.model.CustomerDto;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -24,13 +21,13 @@ public class CustomerController {
     }
 
     @GetMapping("/{customerId}")
-    public ResponseEntity<CustomerDataTransferObject> getCustomer(@PathVariable("customerId")UUID customerId) {
+    public ResponseEntity<CustomerDto> getCustomer(@PathVariable("customerId")UUID customerId) {
         return new ResponseEntity<>(customerService.getCustomerById(customerId), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<CustomerDataTransferObject> handlePost(@Valid @RequestBody CustomerDataTransferObject customerDto) {
-        CustomerDataTransferObject savedCustomer = customerService.saveNewCustomer(customerDto);
+    public ResponseEntity<CustomerDto> handlePost(@Valid @RequestBody CustomerDto customerDto) {
+        CustomerDto savedCustomer = customerService.saveNewCustomer(customerDto);
 
         HttpHeaders httpHeaders = new HttpHeaders();
         // TODO: add hostname to url
@@ -41,7 +38,7 @@ public class CustomerController {
 
     @PutMapping("/{customerId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void handleUpdate(@PathVariable("customerId") UUID customerId, @Valid @RequestBody CustomerDataTransferObject customerDto) {
+    public void handleUpdate(@PathVariable("customerId") UUID customerId, @Valid @RequestBody CustomerDto customerDto) {
         customerService.updateCustomer(customerId, customerDto);
     }
 

@@ -2,7 +2,7 @@ package com.joseneyra.sfmsbrewery.web.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.joseneyra.sfmsbrewery.services.impl.BeerServiceImpl
-import com.joseneyra.sfmsbrewery.web.model.BeerDataTransferObject
+import com.joseneyra.sfmsbrewery.web.model.BeerDto
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.http.MediaType
@@ -25,11 +25,11 @@ class BeerControllerTest extends Specification {
     @Autowired
     private ObjectMapper objectMapper
 
-    private BeerDataTransferObject validBeer
+    private BeerDto validBeer
 
 
     void setup() {
-        validBeer = BeerDataTransferObject.builder()
+        validBeer = BeerDto.builder()
                 .id(UUID.randomUUID())
                 .beerName("Galaxy Cat")
                 .beerStyle("Pale Ale")
@@ -54,14 +54,14 @@ class BeerControllerTest extends Specification {
         def beerDto = validBeer
         beerDto.setId(null)
 
-        def savedDto = BeerDataTransferObject.builder()
+        def savedDto = BeerDto.builder()
                                             .id(UUID.randomUUID())
                                             .beerName("New Beer")
                                             .build()
         def beerDtoJson = objectMapper.writeValueAsString(beerDto)
 
         def beerService = GroovyStub(BeerServiceImpl)
-        beerService.saveNewBeer(_ as BeerDataTransferObject) >> savedDto
+        beerService.saveNewBeer(_ as BeerDto) >> savedDto
 
         expect:
         mockMvc.perform(post("/api/v1/beer")

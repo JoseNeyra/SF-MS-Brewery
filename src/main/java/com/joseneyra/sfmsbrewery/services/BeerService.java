@@ -1,16 +1,16 @@
 package com.joseneyra.sfmsbrewery.services;
 
-import com.joseneyra.sfmsbrewery.web.model.BeerDataTransferObject;
+import com.joseneyra.sfmsbrewery.web.model.BeerDto;
 
 import java.util.UUID;
 
 public interface BeerService {
 
-    BeerDataTransferObject getBeerById(UUID beerId);
+    BeerDto getBeerById(UUID beerId);
 
-    BeerDataTransferObject saveNewBeer(BeerDataTransferObject beerDto);
+    BeerDto saveNewBeer(BeerDto beerDto);
 
-    void updateBeer(UUID beerId, BeerDataTransferObject beerDto);
+    void updateBeer(UUID beerId, BeerDto beerDto);
 
     void deleteBeerById(UUID beerId);
 }

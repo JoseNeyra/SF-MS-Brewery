@@ -1,7 +1,7 @@
 package com.joseneyra.sfmsbrewery.services.impl;
 
 import com.joseneyra.sfmsbrewery.services.CustomerService;
-import com.joseneyra.sfmsbrewery.web.model.CustomerDataTransferObject;
+import com.joseneyra.sfmsbrewery.web.model.CustomerDto;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -9,22 +9,22 @@ import java.util.UUID;
 @Service
 public class CustomerServiceImpl implements CustomerService {
     @Override
-    public CustomerDataTransferObject getCustomerById(UUID id) {
-        return CustomerDataTransferObject.builder().
+    public CustomerDto getCustomerById(UUID id) {
+        return CustomerDto.builder().
                 id(id).
                 name("Jose").
                 build();
     }
 
     @Override
-    public CustomerDataTransferObject saveNewCustomer(CustomerDataTransferObject customerDto) {
-        return CustomerDataTransferObject.builder()
+    public CustomerDto saveNewCustomer(CustomerDto customerDto) {
+        return CustomerDto.builder()
                 .id(UUID.randomUUID())
                 .build();
     }
 
     @Override
-    public void updateCustomer(UUID customerId, CustomerDataTransferObject customerDto) {
+    public void updateCustomer(UUID customerId, CustomerDto customerDto) {
         // Todo
     }
 

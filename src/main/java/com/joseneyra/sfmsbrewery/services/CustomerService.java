@@ -1,16 +1,16 @@
 package com.joseneyra.sfmsbrewery.services;
 
-import com.joseneyra.sfmsbrewery.web.model.CustomerDataTransferObject;
+import com.joseneyra.sfmsbrewery.web.model.CustomerDto;
 
 import java.util.UUID;
 
 public interface CustomerService {
 
-    public CustomerDataTransferObject getCustomerById(UUID id);
+    public CustomerDto getCustomerById(UUID id);
 
-    public CustomerDataTransferObject saveNewCustomer(CustomerDataTransferObject customerDto);
+    public CustomerDto saveNewCustomer(CustomerDto customerDto);
 
-    public void updateCustomer(UUID customerId, CustomerDataTransferObject customerDto);
+    public void updateCustomer(UUID customerId, CustomerDto customerDto);
 
     public void deleteByCustomerById(UUID customerId);
 }

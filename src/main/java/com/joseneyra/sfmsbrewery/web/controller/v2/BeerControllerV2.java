@@ -2,6 +2,7 @@ package com.joseneyra.sfmsbrewery.web.controller.v2;
 
 import com.joseneyra.sfmsbrewery.services.v2.BeerServiceV2;
 import com.joseneyra.sfmsbrewery.web.model.v2.BeerDtoV2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,7 +44,7 @@ public class BeerControllerV2 {
 
     @PutMapping("/{beerId}")
     public ResponseEntity<BeerDtoV2> handleUpdate(@PathVariable("beerId") UUID beerId,
-                                                               @Valid @RequestBody BeerDtoV2 beerDto) {
+                                                  @Valid @RequestBody BeerDtoV2 beerDto) {
         beerService.updateBeer(beerId, beerDto);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

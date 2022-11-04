@@ -1,7 +1,7 @@
 package com.joseneyra.sfmsbrewery.services.impl;
 
 import com.joseneyra.sfmsbrewery.services.BeerService;
-import com.joseneyra.sfmsbrewery.web.model.BeerDataTransferObject;
+import com.joseneyra.sfmsbrewery.web.model.BeerDto;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -9,8 +9,8 @@ import java.util.UUID;
 @Service
 public class BeerServiceImpl implements BeerService{
     @Override
-    public BeerDataTransferObject getBeerById(UUID beerId) {
-        return BeerDataTransferObject.builder().
+    public BeerDto getBeerById(UUID beerId) {
+        return BeerDto.builder().
                 id(UUID.randomUUID()).
                 beerName("Galaxy Cat").
                 beerStyle("Pale Ale").
@@ -19,14 +19,14 @@ public class BeerServiceImpl implements BeerService{
     }
 
     @Override
-    public BeerDataTransferObject saveNewBeer(BeerDataTransferObject beerDto) {
-        return BeerDataTransferObject.builder().
+    public BeerDto saveNewBeer(BeerDto beerDto) {
+        return BeerDto.builder().
                 id(UUID.randomUUID()).
                 build();
     }
 
     @Override
-    public void updateBeer(UUID beerId, BeerDataTransferObject beerDto) {
+    public void updateBeer(UUID beerId, BeerDto beerDto) {
         // TODO
     }
 
